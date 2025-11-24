@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cardano Support FAQ - Crypto Station</title>
-    
-    <!-- ✅ Google AdSense 所有権確認コード -->
+    <title>Cardano FAQ - Support Helper</title>
+
+     <!-- ✅ Google AdSense Owner confirmation code -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8299108249562278"
      crossorigin="anonymous"></script>
     
@@ -35,7 +35,7 @@
     }
 
     .site-logo {
-        height: 120px;
+        height: 40px;
         width: auto;
         transition: opacity 0.3s;
     }
@@ -99,7 +99,7 @@
         }
 
         .site-logo {
-            height: 105px;
+            height: 35px;
         }
 
         .nav-links {
@@ -112,8 +112,73 @@
             font-size: 0.9rem;
         }
     }
+
+    /* Dropdown menu styles */
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: white;
+        min-width: 220px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        border-radius: 8px;
+        z-index: 1000;
+        top: 100%;
+        left: 0;
+        margin-top: 8px;
+    }
+
+    .dropdown-content a {
+        color: #333;
+        padding: 12px 20px;
+        text-decoration: none;
+        display: block;
+        transition: background-color 0.3s;
+        font-size: 14px;
+    }
+
+    .dropdown-content a:hover {
+        background-color: #f1f1f1;
+        color: #667eea;
+    }
+
+    .dropdown-content a:first-child {
+        border-radius: 8px 8px 0 0;
+    }
+
+    .dropdown-content a:last-child {
+        border-radius: 0 0 8px 8px;
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    .dropdown > a::after {
+        content: ' ▼';
+        font-size: 10px;
+        margin-left: 5px;
+    }
+
+    /* Dark mode support */
+    [data-theme="dark"] .dropdown-content {
+        background-color: #2d3748;
+    }
+
+    [data-theme="dark"] .dropdown-content a {
+        color: #e2e8f0;
+    }
+
+    [data-theme="dark"] .dropdown-content a:hover {
+        background-color: #4a5568;
+        color: #667eea;
+    }
     </style>
-    
+
     <style>
         :root {
             --bg-primary: #f8f9fa;
@@ -178,9 +243,9 @@
         
         .search-box {
             background: var(--bg-secondary);
-            padding: 1rem;
+            padding: 1.5rem;
             border-radius: 10px;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             box-shadow: 0 2px 10px var(--shadow);
         }
         
@@ -190,44 +255,87 @@
             border: 2px solid var(--border-color);
             border-radius: 8px;
             font-size: 16px;
-            background: var(--bg-primary);
+            background: var(--bg-secondary);
             color: var(--text-primary);
-            box-sizing: border-box;
+            transition: border-color 0.3s;
         }
         
         .search-box input:focus {
             outline: none;
-            border-color: var(--gradient-start);
+            border-color: #667eea;
         }
         
-        .filter-buttons {
+        .filter-controls {
+            background: var(--bg-secondary);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 10px var(--shadow);
+        }
+        
+        .filter-label {
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 0.8rem;
+            display: block;
+        }
+        
+        .category-filters {
             display: flex;
             gap: 0.5rem;
             flex-wrap: wrap;
-            margin-top: 1rem;
+            margin-bottom: 1rem;
         }
         
-        .filter-btn {
+        .category-btn {
             padding: 0.5rem 1rem;
-            border: 2px solid var(--border-color);
-            background: var(--bg-primary);
-            color: var(--text-primary);
+            border: 2px solid #667eea;
+            background: var(--bg-secondary);
+            color: #667eea;
             border-radius: 20px;
             cursor: pointer;
+            font-weight: 500;
             transition: all 0.3s;
-            font-size: 0.9rem;
         }
         
-        .filter-btn:hover {
-            border-color: var(--gradient-start);
-            background: var(--gradient-start);
+        .category-btn:hover {
+            background: var(--bg-primary);
+        }
+        
+        .category-btn.active {
+            background: #667eea;
             color: white;
         }
         
-        .filter-btn.active {
-            background: var(--gradient-start);
+        .action-buttons {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .action-btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            background: #6c757d;
             color: white;
-            border-color: var(--gradient-start);
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background 0.3s;
+        }
+        
+        .action-btn:hover {
+            background: #5a6268;
+        }
+        
+        .results-info {
+            background: var(--bg-secondary);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 10px var(--shadow);
+            text-align: center;
+            color: var(--text-secondary);
+            font-weight: 500;
         }
         
         .faq-item {
@@ -236,15 +344,16 @@
             border-radius: 10px;
             box-shadow: 0 2px 10px var(--shadow);
             overflow: hidden;
-            transition: transform 0.3s;
+            transition: transform 0.3s, box-shadow 0.3s;
         }
         
         .faq-item:hover {
             transform: translateY(-2px);
+            box-shadow: 0 4px 15px var(--shadow);
         }
         
         .faq-question {
-            background: var(--gradient-start);
+            background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
             color: white;
             padding: 1rem;
             cursor: pointer;
@@ -252,49 +361,67 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            transition: background 0.3s;
+            transition: opacity 0.3s;
         }
         
         .faq-question:hover {
-            background: var(--gradient-end);
+            opacity: 0.9;
         }
         
         .faq-answer {
-            padding: 1.5rem;
-            display: none;
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
             border-top: 1px solid var(--border-color);
-            color: var(--text-secondary);
+            transition: max-height 0.4s ease, padding 0.4s ease;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
         }
         
         .faq-answer.active {
-            display: block;
+            padding: 1rem;
+            max-height: 500px;
+        }
+        
+        .faq-answer-content {
+            line-height: 1.8;
         }
         
         .category-tag {
             background: rgba(255,255,255,0.2);
             padding: 0.25rem 0.75rem;
             border-radius: 15px;
-            font-size: 0.8rem;
-            margin-left: 0.5rem;
+            font-size: 0.85rem;
+            margin-right: 0.5rem;
         }
         
         .expand-icon {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             transition: transform 0.3s ease;
-            flex-shrink: 0;
         }
         
         .expand-icon.rotated {
-            transform: rotate(45deg);
+            transform: rotate(180deg);
+        }
+        
+        .highlight {
+            background-color: yellow;
+            color: black;
+            font-weight: bold;
+            padding: 0 2px;
         }
         
         .no-results {
-            text-align: center;
-            padding: 2rem;
-            color: var(--text-secondary);
             background: var(--bg-secondary);
+            padding: 3rem;
             border-radius: 10px;
-            box-shadow: 0 2px 10px var(--shadow);
+            text-align: center;
+            color: var(--text-secondary);
+        }
+        
+        .no-results-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
         }
         
         .footer {
@@ -304,7 +431,7 @@
             border-top: 1px solid var(--border-color);
             margin-top: 3rem;
         }
-        
+
         .footer-links {
             display: flex;
             justify-content: center;
@@ -312,20 +439,20 @@
             margin-bottom: 1rem;
             flex-wrap: wrap;
         }
-        
+
         .footer-links a {
-            color: var(--gradient-start);
+            color: #667eea;
             text-decoration: none;
             font-weight: 500;
         }
-        
+
         .footer-links a:hover {
             text-decoration: underline;
         }
     </style>
 </head>
 <body>
-    <!-- Navigation Menu -->
+    <!-- 共通メニュー -->
     <nav class="nav-menu">
         <div class="nav-container">
             <a href="index.html" class="logo-link">
@@ -333,10 +460,20 @@
                 <img src="crypto-station_logo_black.png" alt="Crypto Station" class="site-logo dark-logo">
             </a>
             <ul class="nav-links">
-                <li><a href="index.html" class="active">Home</a></li>
-                <li><a href="cards.html">Crypto Cards</a></li>
-                <li><a href="crypto-tax.html">Tax Information</a></li>
-                <li><a href="ada-comparison.html">ADA Comparison</a></li>
+                <li><a href="index.html" id="nav-faq">FAQ</a></li>
+                <li><a href="cards.html" id="nav-cards">Crypto Cards</a></li>
+                <li><a href="ada-comparison.html" id="nav-ada">ADA Price Comparison</a></li>
+                <li><a href="crypto-tax.html" id="nav-tax">Tax Rates</a></li>
+                <li>
+                    <div class="dropdown">
+                        <a href="ai-trading.html">AI Trading</a>
+                        <div class="dropdown-content">
+                            <a href="https://gaussnet.crypto-station.org">🧪 GaussNet</a>
+                            <a href="https://davincinet.crypto-station.org">🎨 DaVinciNet</a>
+                            <a href="https://einsteinnet.crypto-station.org">🔬 EinsteinNet</a>
+                        </div>
+                    </div>
+                </li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
@@ -351,176 +488,183 @@
     
     <div class="search-box">
         <input type="text" id="searchInput" placeholder="Search FAQs (e.g., Ledger, staking, restore)..." />
-        <div class="filter-buttons">
-            <button class="filter-btn active" data-category="all">All</button>
-            <button class="filter-btn" data-category="Lace">Lace</button>
-            <button class="filter-btn" data-category="Daedalus">Daedalus</button>
-            <button class="filter-btn" data-category="Staking">Staking</button>
-            <button class="filter-btn" data-category="Hardware">Hardware Wallet</button>
+    </div>
+    
+    <div class="filter-controls">
+        <label class="filter-label">Filter by Category:</label>
+        <div class="category-filters" id="categoryFilters">
+            <button class="category-btn active" data-category="all">All</button>
+        </div>
+        
+        <label class="filter-label" style="margin-top: 1rem;">Quick Actions:</label>
+        <div class="action-buttons">
+            <button class="action-btn" id="expandAllBtn">Expand All</button>
+            <button class="action-btn" id="collapseAllBtn">Collapse All</button>
         </div>
     </div>
     
-    <div id="faqContainer">
-        <!-- FAQs will be inserted here -->
+    <div class="results-info" id="resultsInfo">
+        Showing all FAQs
     </div>
-
-    <footer class="footer">
-        <div class="footer-links">
-            <a href="index.html">Home</a>
-            <a href="about.html">About</a>
-            <a href="contact.html">Contact</a>
-            <a href="privacy-policy.html">Privacy Policy</a>
-        </div>
-        <p>&copy; 2025 Crypto Station. All rights reserved.</p>
-    </footer>
+    
+    <div id="faqContainer"></div>
     
     <script>
         const faqs = [
             {
                 question: "How do I restore my Lace wallet?",
-                answer: "To restore your Lace wallet, open the Lace extension or app, select 'Restore wallet', and enter your 24-word recovery phrase in the correct order. Make sure all words are typed correctly and are from the official BIP39 word list.",
+                answer: "Use your recovery phrase in Lace. Ensure all words are typed correctly and in the right order. Go to Settings > Wallet > Restore and follow the prompts.",
                 category: "Lace"
             },
             {
-                question: "How do I stake ADA in Lace?",
-                answer: "In Lace, go to the Staking tab, browse available stake pools or search for a specific pool, review the pool's performance metrics, and click 'Delegate' to stake your ADA. The process takes a few epochs to start earning rewards.",
-                category: "Lace"
-            },
-            {
-                question: "Can I use Ledger with Lace?",
-                answer: "Yes, Lace supports Ledger hardware wallets. Connect your Ledger device, unlock it, open the Cardano app on the device, and then select 'Hardware Wallet' when adding an account in Lace.",
-                category: "Hardware"
-            },
-            {
-                question: "How do I check my staking rewards?",
-                answer: "You can view your staking rewards directly in Lace under the Staking tab, or by using a Cardano blockchain explorer like cardanoscan.io or pool.pm. Enter your wallet address to see your reward history.",
-                category: "Staking"
-            },
-            {
-                question: "How long does Daedalus take to sync?",
-                answer: "Initial sync of Daedalus can take several hours as it downloads the entire blockchain. Subsequent syncs are faster. Ensure you have a stable internet connection and at least 20GB of free disk space.",
+                question: "Does Daedalus support message signing?",
+                answer: "Currently, Daedalus does not support message signing. Please use Lace for this feature, which has built-in message signing capabilities.",
                 category: "Daedalus"
+            },
+            {
+                question: "How can I check my staking rewards?",
+                answer: "You can view your staking rewards directly in Lace under the Staking tab, or by using a Cardano blockchain explorer like CardanoScan or PoolTool.",
+                category: "Staking"
             },
             {
                 question: "How do I restore a Daedalus paper wallet?",
-                answer: "In Daedalus, go to 'Add wallet' > 'Restore wallet' > 'Daedalus wallet' and select '27-word paper wallet'. Enter your 27-word recovery phrase carefully in the correct order.",
+                answer: "In Daedalus, go to 'Add wallet' > 'Restore wallet' > 'Daedalus wallet' and select '27-word paper wallet'. Enter your 27 words carefully.",
                 category: "Daedalus"
             },
             {
-                question: "What is the minimum ADA to stake?",
-                answer: "There is no minimum ADA required to stake on Cardano. However, you need at least 2 ADA (1 ADA deposit + transaction fees) to delegate to a stake pool. The deposit is refundable when you stop staking.",
+                question: "Can I use Ledger with Lace?",
+                answer: "Yes. Lace supports Ledger hardware wallets. Connect your device and select 'Hardware Wallet' when adding an account. Make sure you have the Cardano app installed on your Ledger.",
+                category: "Lace"
+            },
+            {
+                question: "Why is my balance showing 0 after restoring?",
+                answer: "Check that your recovery phrase is entered correctly and that you are on the correct network (Mainnet vs Testnet). Also ensure your wallet is fully synced.",
+                category: "Troubleshooting"
+            },
+            {
+                question: "Does Lace support multi-delegation?",
+                answer: "Yes. Lace allows you to delegate to multiple stake pools at once, maximizing your staking flexibility and potential rewards.",
                 category: "Staking"
             },
             {
-                question: "How often are staking rewards paid?",
-                answer: "Staking rewards are distributed every epoch, which is 5 days. After delegating, it takes 15-20 days to receive your first rewards. After that, you receive rewards every 5 days.",
+                question: "What should I do if I lose my recovery phrase?",
+                answer: "Without the recovery phrase you cannot restore your wallet. If possible, immediately move any funds to a new wallet with a safe backup. Store your recovery phrase securely offline.",
+                category: "Security"
+            },
+            {
+                question: "How can I update Lace to the latest version?",
+                answer: "Visit https://www.lace.io/ and download the latest version, or update via your browser's extension store if using the browser extension.",
+                category: "Lace"
+            },
+            {
+                question: "Is Lace mobile available?",
+                answer: "Lace mobile is under development and will include send, receive, and staking features. See the roadmap at https://www.lace.io/roadmap-2025.pdf for updates.",
+                category: "Lace"
+            },
+            {
+                question: "How long does it take to start receiving staking rewards?",
+                answer: "After delegating, it takes 15-20 days (3 epochs) before you receive your first rewards. After that, rewards are distributed every 5 days.",
                 category: "Staking"
             },
             {
-                question: "Can I use Trezor with Daedalus?",
-                answer: "Yes, Daedalus supports Trezor Model T. Connect your Trezor, unlock it, and select 'Hardware wallet' when creating a new wallet in Daedalus. Follow the on-screen instructions.",
-                category: "Hardware"
+                question: "Can I change my stake pool without losing rewards?",
+                answer: "Yes, you can change stake pools at any time. Your pending rewards will still be paid out, and the change takes effect after the current epoch ends.",
+                category: "Staking"
             },
             {
-                question: "How do I update Daedalus?",
-                answer: "Daedalus will notify you when an update is available. Download the latest version from the official Cardano website (daedaluswallet.io), close Daedalus, install the update, and restart. Your wallet data is preserved.",
+                question: "How do I send ADA in Lace?",
+                answer: "Click the Send button, enter the recipient's address and amount, review the transaction details including fees, and confirm. Always double-check the recipient address.",
+                category: "Lace"
+            },
+            {
+                question: "What is the minimum ADA for staking?",
+                answer: "There is no minimum ADA required for staking. However, you need to pay a 2 ADA deposit (refundable when you undelegate) and transaction fees.",
+                category: "Staking"
+            },
+            {
+                question: "How do I verify a transaction on Cardano?",
+                answer: "Use a blockchain explorer like CardanoScan or Cardano Explorer. Enter your transaction hash or address to view transaction details and confirmations.",
+                category: "General"
+            },
+            {
+                question: "Can I stake ADA from multiple wallets to the same pool?",
+                answer: "Yes, you can delegate from multiple wallets to the same stake pool. Each wallet operates independently with its own staking rewards.",
+                category: "Staking"
+            },
+            {
+                question: "What are native tokens on Cardano?",
+                answer: "Native tokens are custom tokens created on Cardano without requiring smart contracts. They can represent assets, utility tokens, NFTs, and more.",
+                category: "General"
+            },
+            {
+                question: "How do I add a custom token to Lace?",
+                answer: "Lace automatically detects tokens sent to your wallet. They will appear in your asset list once you receive them. No manual addition is needed.",
+                category: "Lace"
+            },
+            {
+                question: "Why is Daedalus taking so long to sync?",
+                answer: "Daedalus is a full node wallet that downloads the entire blockchain. Initial sync can take several hours depending on your internet speed. Subsequent syncs are faster.",
                 category: "Daedalus"
             },
             {
-                question: "What are delegation fees?",
-                answer: "When you first delegate to a stake pool, you pay a one-time 2 ADA deposit (refundable) plus a small transaction fee (~0.17 ADA). Switching pools only costs the transaction fee.",
+                question: "Is it safe to keep ADA in a software wallet?",
+                answer: "Software wallets like Lace and Daedalus are secure for moderate amounts. For large holdings, consider a hardware wallet like Ledger for additional security.",
+                category: "Security"
+            },
+            {
+                question: "How do I export my transaction history?",
+                answer: "In Lace, go to Settings > Export and select the date range. In Daedalus, transactions can be viewed on-screen but CSV export is not currently available.",
+                category: "General"
+            },
+            {
+                question: "What is the difference between Lace and Daedalus?",
+                answer: "Lace is a light wallet (faster, browser-based) while Daedalus is a full node wallet (downloads full blockchain). Lace is easier for beginners, Daedalus offers more control.",
+                category: "General"
+            },
+            {
+                question: "Can I unstake my ADA anytime?",
+                answer: "Yes, you can undelegate anytime. Your ADA is never locked. You'll continue receiving rewards for 2 more epochs after undelegating.",
                 category: "Staking"
             },
             {
-                question: "Can I stake from multiple wallets?",
-                answer: "Yes, you can stake from multiple wallets. Each wallet can be delegated to the same or different stake pools. Rewards are calculated independently for each wallet.",
-                category: "Staking"
-            },
-            {
-                question: "How do I export my Lace wallet address?",
-                answer: "In Lace, click on 'Receive', and your wallet address will be displayed. You can copy it or show the QR code. You can also click on the address in your wallet overview to copy it.",
+                question: "How do I connect Lace to a dApp?",
+                answer: "Visit the dApp website and click the Connect Wallet button. Select Lace from the wallet options and approve the connection in the popup.",
                 category: "Lace"
             },
             {
-                question: "What happens if I lose my recovery phrase?",
-                answer: "If you lose your recovery phrase and lose access to your wallet, your funds cannot be recovered. Always store your recovery phrase securely in multiple locations. Never share it with anyone.",
-                category: "Lace"
+                question: "What are transaction fees on Cardano?",
+                answer: "Cardano transaction fees are typically 0.17-0.18 ADA per transaction. Fees depend on transaction size and network congestion but remain very low compared to other blockchains.",
+                category: "General"
             },
             {
-                question: "How do I change stake pools?",
-                answer: "To change stake pools, go to the Staking section in your wallet, select a new pool, and delegate. You'll pay a small transaction fee. There's no penalty for switching, and you won't lose any pending rewards.",
+                question: "How do I backup my Daedalus wallet?",
+                answer: "Write down your 24-word recovery phrase during wallet creation and store it securely offline. You can also use Settings > Export wallet for additional backups.",
+                category: "Daedalus"
+            },
+            {
+                question: "Can I use the same recovery phrase in both Lace and Daedalus?",
+                answer: "Yes, both wallets use BIP39 standard. You can restore the same wallet in either application using your recovery phrase.",
+                category: "General"
+            },
+            {
+                question: "What is a stake pool saturation?",
+                answer: "Saturation occurs when a pool has too much stake (>68M ADA). Over-saturated pools yield lower rewards. Choose pools with 70-90% saturation for optimal returns.",
                 category: "Staking"
+            },
+            {
+                question: "How do I check if my Ledger is genuine?",
+                answer: "Buy only from official Ledger store. Check for tamper-evident seals, verify the device with Ledger Live, and never use a device that comes with a pre-filled recovery phrase.",
+                category: "Security"
+            },
+            {
+                question: "What is collateral in Cardano smart contracts?",
+                answer: "Collateral (typically 5 ADA) is held during smart contract execution to cover costs if the transaction fails. It's returned if the transaction succeeds.",
+                category: "General"
             }
         ];
-
-        let currentFilter = 'all';
         
-        function displayFAQs(faqsToDisplay) {
-            const container = document.getElementById('faqContainer');
-            
-            if (faqsToDisplay.length === 0) {
-                container.innerHTML = '<div class="no-results">No FAQs found matching your search.</div>';
-                return;
-            }
-            
-            container.innerHTML = faqsToDisplay.map((faq, index) => `
-                <div class="faq-item">
-                    <div class="faq-question" onclick="toggleAnswer(${index})">
-                        <span>
-                            ${faq.question}
-                            <span class="category-tag">${faq.category}</span>
-                        </span>
-                        <span class="expand-icon" id="icon-${index}">+</span>
-                    </div>
-                    <div class="faq-answer" id="answer-${index}">
-                        ${faq.answer}
-                    </div>
-                </div>
-            `).join('');
-        }
-        
-        function toggleAnswer(index) {
-            const answer = document.getElementById(`answer-${index}`);
-            const icon = document.getElementById(`icon-${index}`);
-            
-            answer.classList.toggle('active');
-            icon.classList.toggle('rotated');
-        }
-        
-        function filterFAQs() {
-            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-            
-            let filtered = faqs;
-            
-            // Category filter
-            if (currentFilter !== 'all') {
-                filtered = filtered.filter(faq => faq.category === currentFilter);
-            }
-            
-            // Search filter
-            if (searchTerm) {
-                filtered = filtered.filter(faq => 
-                    faq.question.toLowerCase().includes(searchTerm) ||
-                    faq.answer.toLowerCase().includes(searchTerm) ||
-                    faq.category.toLowerCase().includes(searchTerm)
-                );
-            }
-            
-            displayFAQs(filtered);
-        }
-        
-        // Search input event
-        document.getElementById('searchInput').addEventListener('input', filterFAQs);
-        
-        // Filter buttons
-        document.querySelectorAll('.filter-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                currentFilter = this.dataset.category;
-                filterFAQs();
-            });
-        });
+        let currentCategory = 'all';
+        let currentSearchTerm = '';
         
         // Theme toggle function
         function toggleTheme() {
@@ -552,9 +696,165 @@
             }
         }
         
+        // Extract unique categories
+        const categories = ['all', ...new Set(faqs.map(faq => faq.category))];
+        
+        // Initialize category filters
+        function initCategoryFilters() {
+            const filterContainer = document.getElementById('categoryFilters');
+            categories.forEach(category => {
+                if (category !== 'all') {
+                    const btn = document.createElement('button');
+                    btn.className = 'category-btn';
+                    btn.textContent = category;
+                    btn.dataset.category = category;
+                    btn.addEventListener('click', () => filterByCategory(category));
+                    filterContainer.appendChild(btn);
+                }
+            });
+        }
+        
+        function filterByCategory(category) {
+            currentCategory = category;
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.category === category);
+            });
+            renderFAQs();
+        }
+        
+        function getFilteredFAQs() {
+            return faqs.filter(faq => {
+                const matchesCategory = currentCategory === 'all' || faq.category === currentCategory;
+                const matchesSearch = !currentSearchTerm || 
+                    faq.question.toLowerCase().includes(currentSearchTerm) ||
+                    faq.answer.toLowerCase().includes(currentSearchTerm) ||
+                    faq.category.toLowerCase().includes(currentSearchTerm);
+                return matchesCategory && matchesSearch;
+            });
+        }
+        
+        function highlightText(text, searchTerm) {
+            if (!searchTerm) return text;
+            const regex = new RegExp(`(${searchTerm})`, 'gi');
+            return text.replace(regex, '<span class="highlight">$1</span>');
+        }
+        
+        function renderFAQs() {
+            const container = document.getElementById('faqContainer');
+            const filteredFAQs = getFilteredFAQs();
+            
+            // Update results info
+            const resultsInfo = document.getElementById('resultsInfo');
+            if (filteredFAQs.length === 0) {
+                resultsInfo.textContent = 'No results found';
+                container.innerHTML = `
+                    <div class="no-results">
+                        <div class="no-results-icon">🔍</div>
+                        <h3>No FAQs found</h3>
+                        <p>Try adjusting your search or filter criteria</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            let infoText = `Showing ${filteredFAQs.length} of ${faqs.length} FAQs`;
+            if (currentCategory !== 'all') {
+                infoText += ` in ${currentCategory}`;
+            }
+            if (currentSearchTerm) {
+                infoText += ` matching "${currentSearchTerm}"`;
+            }
+            resultsInfo.textContent = infoText;
+            
+            container.innerHTML = '';
+            
+            filteredFAQs.forEach((faq, index) => {
+                const faqElement = document.createElement('div');
+                faqElement.className = 'faq-item';
+                faqElement.innerHTML = `
+                    <div class="faq-question" onclick="toggleFAQ(${index})">
+                        <div>
+                            <span class="category-tag">${faq.category}</span>
+                            <span>${highlightText(faq.question, currentSearchTerm)}</span>
+                        </div>
+                        <span class="expand-icon" id="icon-${index}">▼</span>
+                    </div>
+                    <div class="faq-answer" id="answer-${index}">
+                        <div class="faq-answer-content">
+                            ${highlightText(faq.answer, currentSearchTerm)}
+                        </div>
+                    </div>
+                `;
+                container.appendChild(faqElement);
+            });
+        }
+        
+        function toggleFAQ(index) {
+            const answer = document.getElementById(`answer-${index}`);
+            const icon = document.getElementById(`icon-${index}`);
+            
+            const isActive = answer.classList.contains('active');
+            answer.classList.toggle('active');
+            icon.classList.toggle('rotated');
+        }
+        
+        function expandAll() {
+            document.querySelectorAll('.faq-answer').forEach(answer => {
+                answer.classList.add('active');
+            });
+            document.querySelectorAll('.expand-icon').forEach(icon => {
+                icon.classList.add('rotated');
+            });
+        }
+        
+        function collapseAll() {
+            document.querySelectorAll('.faq-answer').forEach(answer => {
+                answer.classList.remove('active');
+            });
+            document.querySelectorAll('.expand-icon').forEach(icon => {
+                icon.classList.remove('rotated');
+            });
+        }
+        
+        function setupSearch() {
+            const searchInput = document.getElementById('searchInput');
+            searchInput.addEventListener('input', function() {
+                currentSearchTerm = this.value.toLowerCase();
+                renderFAQs();
+            });
+        }
+        
+        function setActiveMenuItem() {
+            const currentPath = window.location.pathname;
+            const currentFile = currentPath.split('/').pop() || 'index.html';
+            document.querySelectorAll('.nav-links a').forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('href').split('/').pop() === currentFile) {
+                    item.classList.add('active');
+                }
+            });
+        }
+        
+        // Event listeners
+        document.getElementById('expandAllBtn').addEventListener('click', expandAll);
+        document.getElementById('collapseAllBtn').addEventListener('click', collapseAll);
+        
         // Initialize
         initTheme();
-        displayFAQs(faqs);
+        initCategoryFilters();
+        renderFAQs();
+        setupSearch();
+        setActiveMenuItem();
     </script>
+    
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            <a href="privacy-policy.html">Privacy Policy</a>
+        </div>
+        <p>&copy; 2025 Crypto Station. All rights reserved.</p>
+    </footer>
 </body>
 </html>
