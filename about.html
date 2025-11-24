@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About - Crypto Station</title>
     
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8299108249562278"
+         crossorigin="anonymous"></script>
+    
     <!-- 共通メニュー用のCSS -->
     <style>
     .nav-menu {
@@ -108,8 +112,73 @@
         font-size: 0.9rem;
     }
 }
+
+    /* Dropdown menu styles */
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: white;
+        min-width: 220px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        border-radius: 8px;
+        z-index: 1000;
+        top: 100%;
+        left: 0;
+        margin-top: 8px;
+    }
+
+    .dropdown-content a {
+        color: #333;
+        padding: 12px 20px;
+        text-decoration: none;
+        display: block;
+        transition: background-color 0.3s;
+        font-size: 14px;
+    }
+
+    .dropdown-content a:hover {
+        background-color: #f1f1f1;
+        color: #667eea;
+    }
+
+    .dropdown-content a:first-child {
+        border-radius: 8px 8px 0 0;
+    }
+
+    .dropdown-content a:last-child {
+        border-radius: 0 0 8px 8px;
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    .dropdown > a::after {
+        content: ' ▼';
+        font-size: 10px;
+        margin-left: 5px;
+    }
+
+    /* Dark mode support */
+    [data-theme="dark"] .dropdown-content {
+        background-color: #2d3748;
+    }
+
+    [data-theme="dark"] .dropdown-content a {
+        color: #e2e8f0;
+    }
+
+    [data-theme="dark"] .dropdown-content a:hover {
+        background-color: #4a5568;
+        color: #667eea;
+    }
     </style>
-    
+
     <style>
         :root {
             --bg-primary: #f8f9fa;
@@ -289,6 +358,16 @@
                 <li><a href="cards.html">Crypto Cards</a></li>
                 <li><a href="crypto-tax.html">Tax Information</a></li>
                 <li><a href="ada-comparison.html">ADA Comparison</a></li>
+                <li>
+                    <div class="dropdown">
+                        <a href="ai-trading.html">AI Trading</a>
+                        <div class="dropdown-content">
+                            <a href="https://gaussnet.crypto-station.org">🤖 GaussNet</a>
+                            <a href="https://davincinet.crypto-station.org">🎨 DaVinciNet</a>
+                            <a href="https://einsteinnet.crypto-station.org">🔬 EinsteinNet</a>
+                        </div>
+                    </div>
+                </li>
                 <li><a href="about.html" class="active">About</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>

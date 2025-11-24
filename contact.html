@@ -5,115 +5,180 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us - Crypto Station</title>
     
-    <!-- ✅ Google AdSense 所有権確認コード -->
+    <!-- Google AdSense -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8299108249562278"
-     crossorigin="anonymous"></script>
+         crossorigin="anonymous"></script>
     
     <!-- 共通メニュー用のCSS -->
     <style>
     .nav-menu {
-        background-color: #f8f9fa;
-        padding: 1rem 0;
-        margin-bottom: 2rem;
-        border-bottom: 1px solid #dee2e6;
-    }
+    background-color: #f8f9fa;
+    padding: 1rem 0;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid #dee2e6;
+}
 
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.logo-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    flex-shrink: 0;
+}
+
+.site-logo {
+    height: 40px;
+    width: auto;
+    transition: opacity 0.3s;
+}
+
+.light-logo {
+    display: block;
+}
+
+.dark-logo {
+    display: none;
+}
+
+[data-theme="dark"] .light-logo {
+    display: none;
+}
+
+[data-theme="dark"] .dark-logo {
+    display: block;
+}
+
+[data-theme="dark"] .nav-menu {
+    background-color: #16213e;
+    border-bottom-color: #2a2a3e;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex-wrap: wrap;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #6f42c1;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.nav-links a:hover {
+    background-color: #e2e6ea;
+}
+
+.nav-links a.active {
+    background-color: #6f42c1;
+    color: white;
+}
+
+[data-theme="dark"] .nav-links a:hover {
+    background-color: #2a2a3e;
+}
+
+@media (max-width: 768px) {
     .nav-container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 1rem;
-        display: flex;
-        align-items: center;
-        gap: 2rem;
-    }
-
-    .logo-link {
-        display: flex;
-        align-items: center;
-        text-decoration: none;
-        flex-shrink: 0;
+        flex-direction: column;
+        gap: 1rem;
     }
 
     .site-logo {
-        height: 120px;
-        width: auto;
-        transition: opacity 0.3s;
-    }
-
-    .light-logo {
-        display: block;
-    }
-
-    .dark-logo {
-        display: none;
-    }
-
-    [data-theme="dark"] .light-logo {
-        display: none;
-    }
-
-    [data-theme="dark"] .dark-logo {
-        display: block;
-    }
-
-    [data-theme="dark"] .nav-menu {
-        background-color: #16213e;
-        border-bottom-color: #2a2a3e;
+        height: 35px;
     }
 
     .nav-links {
-        display: flex;
-        gap: 2rem;
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        flex-wrap: wrap;
+        gap: 1rem;
+        justify-content: center;
     }
-
+    
     .nav-links a {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.9rem;
+    }
+}
+
+    /* Dropdown menu styles */
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: white;
+        min-width: 220px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        border-radius: 8px;
+        z-index: 1000;
+        top: 100%;
+        left: 0;
+        margin-top: 8px;
+    }
+
+    .dropdown-content a {
+        color: #333;
+        padding: 12px 20px;
         text-decoration: none;
-        color: #6f42c1;
-        font-weight: 600;
-        padding: 0.5rem 1rem;
-        border-radius: 4px;
-        transition: background-color 0.2s;
+        display: block;
+        transition: background-color 0.3s;
+        font-size: 14px;
     }
 
-    .nav-links a:hover {
-        background-color: #e2e6ea;
+    .dropdown-content a:hover {
+        background-color: #f1f1f1;
+        color: #667eea;
     }
 
-    .nav-links a.active {
-        background-color: #6f42c1;
-        color: white;
+    .dropdown-content a:first-child {
+        border-radius: 8px 8px 0 0;
     }
 
-    [data-theme="dark"] .nav-links a:hover {
-        background-color: #2a2a3e;
+    .dropdown-content a:last-child {
+        border-radius: 0 0 8px 8px;
     }
 
-    @media (max-width: 768px) {
-        .nav-container {
-            flex-direction: column;
-            gap: 1rem;
-        }
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
 
-        .site-logo {
-            height: 105px;
-        }
+    .dropdown > a::after {
+        content: ' ▼';
+        font-size: 10px;
+        margin-left: 5px;
+    }
 
-        .nav-links {
-            gap: 1rem;
-            justify-content: center;
-        }
-        
-        .nav-links a {
-            padding: 0.4rem 0.8rem;
-            font-size: 0.9rem;
-        }
+    /* Dark mode support */
+    [data-theme="dark"] .dropdown-content {
+        background-color: #2d3748;
+    }
+
+    [data-theme="dark"] .dropdown-content a {
+        color: #e2e8f0;
+    }
+
+    [data-theme="dark"] .dropdown-content a:hover {
+        background-color: #4a5568;
+        color: #667eea;
     }
     </style>
-    
+
     <style>
         :root {
             --bg-primary: #f8f9fa;
@@ -325,15 +390,25 @@
     <!-- Navigation Menu -->
     <nav class="nav-menu">
         <div class="nav-container">
-            <a href="index.html" class="logo-link">
-                <img src="crypto-station_logo_whilte.png" alt="Crypto Station" class="site-logo light-logo">
-                <img src="crypto-station_logo_black.png" alt="Crypto Station" class="site-logo dark-logo">
-            </a>
-            <ul class="nav-links">
+        <a href="index.html" class="logo-link">
+            <img src="crypto-station_logo_whilte.png" alt="Crypto Station" class="site-logo light-logo">
+            <img src="crypto-station_logo_black.png" alt="Crypto Station" class="site-logo dark-logo">
+        </a>
+        <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="cards.html">Crypto Cards</a></li>
                 <li><a href="crypto-tax.html">Tax Information</a></li>
                 <li><a href="ada-comparison.html">ADA Comparison</a></li>
+                <li>
+                    <div class="dropdown">
+                        <a href="ai-trading.html">AI Trading</a>
+                        <div class="dropdown-content">
+                            <a href="https://gaussnet.crypto-station.org">🤖 GaussNet</a>
+                            <a href="https://davincinet.crypto-station.org">🎨 DaVinciNet</a>
+                            <a href="https://einsteinnet.crypto-station.org">🔬 EinsteinNet</a>
+                        </div>
+                    </div>
+                </li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="contact.html" class="active">Contact</a></li>
             </ul>

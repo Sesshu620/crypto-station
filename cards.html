@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crypto Card Rankings</title>
-    
-    <!-- ✅ Google AdSense 所有権確認コード -->
+    <!-- Google AdSense -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8299108249562278"
-     crossorigin="anonymous"></script>
+         crossorigin="anonymous"></script>
+    
     <!-- 共通メニュー用のCSS（各ページのheadに追加） -->
 
 <!-- 共通メニュー用のCSS（各ページのheadに追加） -->
@@ -36,7 +36,7 @@
 }
 
 .site-logo {
-    height: 120px;
+    height: 40px;
     width: auto;
     transition: opacity 0.3s;
 }
@@ -100,7 +100,7 @@
     }
 
     .site-logo {
-        height: 105px;
+        height: 35px;
     }
 
     .nav-links {
@@ -113,6 +113,72 @@
         font-size: 0.9rem;
     }
 }
+
+    /* Dropdown menu styles */
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: white;
+        min-width: 220px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        border-radius: 8px;
+        z-index: 1000;
+        top: 100%;
+        left: 0;
+        margin-top: 8px;
+    }
+
+    .dropdown-content a {
+        color: #333;
+        padding: 12px 20px;
+        text-decoration: none;
+        display: block;
+        transition: background-color 0.3s;
+        font-size: 14px;
+    }
+
+    .dropdown-content a:hover {
+        background-color: #f1f1f1;
+        color: #667eea;
+    }
+
+    .dropdown-content a:first-child {
+        border-radius: 8px 8px 0 0;
+    }
+
+    .dropdown-content a:last-child {
+        border-radius: 0 0 8px 8px;
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    .dropdown > a::after {
+        content: ' ▼';
+        font-size: 10px;
+        margin-left: 5px;
+    }
+
+    /* Dark mode support */
+    [data-theme="dark"] .dropdown-content {
+        background-color: #2d3748;
+    }
+
+    [data-theme="dark"] .dropdown-content a {
+        color: #e2e8f0;
+    }
+
+    [data-theme="dark"] .dropdown-content a:hover {
+        background-color: #4a5568;
+        color: #667eea;
+    }
+</style>
 </style>
 
 <!-- 共通メニューHTML（各ページのbody開始直後に追加） -->
@@ -127,7 +193,17 @@
             <li><a href="cards.html" id="nav-cards">Crypto Cards</a></li>
             <li><a href="ada-comparison.html" id="nav-ada">ADA Price Comparison</a></li>
             <li><a href="crypto-tax.html" id="nav-tax">Tax Rates</a></li>
-            <li><a href="about.html">About</a></li>
+            <li>
+                <div class="dropdown">
+                    <a href="ai-trading.html">AI Trading</a>
+                    <div class="dropdown-content">
+                        <a href="https://gaussnet.crypto-station.org">🤖 GaussNet</a>
+                        <a href="https://davincinet.crypto-station.org">🎨 DaVinciNet</a>
+                        <a href="https://einsteinnet.crypto-station.org">🔬 EinsteinNet</a>
+                    </div>
+                </div>
+            </li>
+                <li><a href="about.html">About</a></li>
             <li><a href="contact.html">Contact</a></li>
         </ul>
     </div>
