@@ -405,6 +405,18 @@ document.addEventListener('DOMContentLoaded', setActiveMenuItem);
         .network-solana { background: #9945ff; color: white; }
         .network-cardano { background: #0033ad; color: white; }
 
+        .featured-badge {
+            display: inline-block;
+            padding: 2px 8px;
+            background: linear-gradient(135deg, #f5af19, #f12711);
+            color: white;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-left: 8px;
+            text-transform: uppercase;
+        }
+
         .rewards {
             font-weight: 600;
             color: #28a745;
@@ -710,7 +722,8 @@ document.addEventListener('DOMContentLoaded', setActiveMenuItem);
                 regions: ["EU", "UK", "US", "AS"],
                 score: 70,
                 docsUrl: "https://wirexapp.com",
-                affiliateUrl: "https://wirexapp.com/r/Cryptostation"
+                affiliateUrl: "https://wirexapp.com/r/Cryptostation",
+                featured: true
             },
             {
                 id: 8,
@@ -827,7 +840,7 @@ document.addEventListener('DOMContentLoaded', setActiveMenuItem);
             
             tableBody.innerHTML = sortedCards.map((card) => `
                 <tr>
-                    <td class="card-name">${card.name}</td>
+                    <td class="card-name">${card.name}${card.featured ? ' <span class="featured-badge">Featured</span>' : ''}</td>
                     <td>
                         <span class="network-badge ${NETWORK_COLORS[card.network]}">
                             ${card.network}
@@ -867,6 +880,10 @@ document.addEventListener('DOMContentLoaded', setActiveMenuItem);
 
         function sortCards(cards) {
             return [...cards].sort((a, b) => {
+                // Featured cards always come first
+                if (a.featured && !b.featured) return -1;
+                if (!a.featured && b.featured) return 1;
+
                 let aValue, bValue;
 
                 switch (currentSort.field) {
@@ -906,13 +923,13 @@ document.addEventListener('DOMContentLoaded', setActiveMenuItem);
                 }
 
                 if (typeof aValue === 'string') {
-                    return currentSort.direction === 'asc' 
+                    return currentSort.direction === 'asc'
                         ? aValue.localeCompare(bValue)
                         : bValue.localeCompare(aValue);
                 }
 
-                return currentSort.direction === 'asc' 
-                    ? aValue - bValue 
+                return currentSort.direction === 'asc'
+                    ? aValue - bValue
                     : bValue - aValue;
             });
         }
