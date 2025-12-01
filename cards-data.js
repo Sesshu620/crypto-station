@@ -18,7 +18,7 @@
       stakingRequired:false, network:"Mastercard", docsUrl:"https://www.bybit.com", affiliateUrl:"" },
     { id:"wirex", name:"Wirex Card", issuer:"Wirex",
       regions:["Global","AU","EU","UK"], rewardsRate:8, monthlyFee:0, fxFee:1.0, atmFee:2.25,
-      stakingRequired:false, network:"Visa", docsUrl:"https://wirexapp.com", affiliateUrl:"" },
+      stakingRequired:false, network:"Visa", docsUrl:"https://wirexapp.com", affiliateUrl:"https://wirexapp.com/r/Cryptostation" },
     { id:"coinjar", name:"CoinJar Card", issuer:"CoinJar",
       regions:["AU","UK"], rewardsRate:1, monthlyFee:0, fxFee:2.99, atmFee:1,
       stakingRequired:false, network:"Mastercard", docsUrl:"https://www.coinjar.com/card", affiliateUrl:"" },

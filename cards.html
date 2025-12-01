@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crypto Card Rankings</title>
+    <title>Crypto Cards Comparison</title>
     <!-- Google AdSense -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8299108249562278"
          crossorigin="anonymous"></script>
@@ -562,11 +562,15 @@ document.addEventListener('DOMContentLoaded', setActiveMenuItem);
 <body>
     <div class="container">
         <div class="header">
-            <h1>Crypto Card Rankings</h1>
-            <p class="subtitle">Compare crypto cards (dummy data for now)</p>
+            <h1>Crypto Cards</h1>
+            <p class="subtitle">Compare crypto debit cards</p>
             
             <div class="disclaimer">
                 <strong>DISCLAIMER:</strong> Example data for development. Not financial advice. Terms change frequently — always verify on the official issuer page and check availability in your country.
+            </div>
+
+            <div class="disclaimer" style="background: #e7f3ff; border-color: #b3d9ff; color: #0056b3;">
+                <strong>AFFILIATE DISCLOSURE:</strong> Some links on this page are affiliate links. We may earn a commission if you sign up through these links, at no extra cost to you.
             </div>
 
             <div class="controls">
@@ -575,11 +579,10 @@ document.addEventListener('DOMContentLoaded', setActiveMenuItem);
                     <option value="">All regions</option>
                 </select>
                 <select class="filter-select" id="sortSelect">
-                    <option value="score-desc">Sort: Score (high→low)</option>
-                    <option value="score-asc">Sort: Score (low→high)</option>
+                    <option value="name-asc">Sort: Name (A→Z)</option>
+                    <option value="name-desc">Sort: Name (Z→A)</option>
                     <option value="rewards-desc">Sort: Rewards (high→low)</option>
                     <option value="fees-asc">Sort: FX fees (low→high)</option>
-                    <option value="name-asc">Sort: Name (A→Z)</option>
                 </select>
             </div>
         </div>
@@ -592,7 +595,6 @@ document.addEventListener('DOMContentLoaded', setActiveMenuItem);
             <table class="table" id="cardsTable">
                 <thead>
                     <tr>
-                        <th>#</th>
                         <th class="sortable" data-sort="name">Card</th>
                         <th class="sortable" data-sort="network">Network</th>
                         <th class="sortable" data-sort="rewards">Rewards %</th>
@@ -601,7 +603,6 @@ document.addEventListener('DOMContentLoaded', setActiveMenuItem);
                         <th class="sortable" data-sort="monthly">Monthly $</th>
                         <th class="sortable" data-sort="staking">Staking</th>
                         <th>Regions</th>
-                        <th class="sortable" data-sort="score">Score</th>
                         <th>Links</th>
                     </tr>
                 </thead>
@@ -707,7 +708,9 @@ document.addEventListener('DOMContentLoaded', setActiveMenuItem);
                 monthlyFee: 1.00,
                 staking: false,
                 regions: ["EU", "UK", "US", "AS"],
-                score: 70
+                score: 70,
+                docsUrl: "https://wirexapp.com",
+                affiliateUrl: "https://wirexapp.com/r/Cryptostation"
             },
             {
                 id: 8,
@@ -759,7 +762,7 @@ document.addEventListener('DOMContentLoaded', setActiveMenuItem);
         };
 
         let filteredCards = [...CARDS];
-        let currentSort = { field: 'score', direction: 'desc' };
+        let currentSort = { field: 'name', direction: 'asc' };
 
         // Initialize the application
         document.addEventListener('DOMContentLoaded', function() {
@@ -822,9 +825,8 @@ document.addEventListener('DOMContentLoaded', setActiveMenuItem);
 
             const sortedCards = sortCards(filteredCards);
             
-            tableBody.innerHTML = sortedCards.map((card, index) => `
+            tableBody.innerHTML = sortedCards.map((card) => `
                 <tr>
-                    <td class="rank">${index + 1}</td>
                     <td class="card-name">${card.name}</td>
                     <td>
                         <span class="network-badge ${NETWORK_COLORS[card.network]}">
@@ -836,21 +838,20 @@ document.addEventListener('DOMContentLoaded', setActiveMenuItem);
                     <td>$${card.atmFee}</td>
                     <td>$${card.monthlyFee}</td>
                     <td>
-                        <span class="staking-indicator ${card.staking ? 'staking-yes' : 'staking-no'}" 
+                        <span class="staking-indicator ${card.staking ? 'staking-yes' : 'staking-no'}"
                               title="${card.staking ? 'Staking available' : 'No staking'}"></span>
                     </td>
                     <td>
                         <div class="region-badges">
-                            ${card.regions.map(region => 
+                            ${card.regions.map(region =>
                                 `<span class="region-badge">${region}</span>`
                             ).join('')}
                         </div>
                     </td>
-                    <td class="score ${getScoreClass(card.score)}">${card.score}</td>
                     <td>
                         <div class="links">
-                            <a href="#" class="link-btn">Info</a>
-                            <a href="#" class="link-btn">Apply</a>
+                            ${card.docsUrl ? `<a href="${card.docsUrl}" class="link-btn" target="_blank" rel="noopener">Info</a>` : ''}
+                            ${card.affiliateUrl ? `<a href="${card.affiliateUrl}" class="link-btn" target="_blank" rel="noopener">Apply</a>` : (card.docsUrl ? `<a href="${card.docsUrl}" class="link-btn" target="_blank" rel="noopener">Apply</a>` : '')}
                         </div>
                     </td>
                 </tr>
