@@ -428,12 +428,33 @@
             background: rgba(0, 82, 255, 0.3);
         }
 
+        .token-table th.sortable {
+            cursor: pointer;
+            user-select: none;
+            position: relative;
+            padding-right: 20px;
+        }
+
+        .token-table th.sortable:hover {
+            background: rgba(0, 82, 255, 0.4);
+        }
+
+        .token-table th.sortable::after {
+            content: '⇅';
+            position: absolute;
+            right: 5px;
+            opacity: 0.4;
+            font-size: 0.8em;
+        }
+
         .token-table th.sorted-asc::after {
-            content: ' ↑';
+            content: '↑';
+            opacity: 1;
         }
 
         .token-table th.sorted-desc::after {
-            content: ' ↓';
+            content: '↓';
+            opacity: 1;
         }
 
         .token-table td {
@@ -739,12 +760,12 @@
                 <table class="token-table">
                     <thead>
                         <tr>
-                            <th data-sort="rank">#</th>
-                            <th data-sort="name">Token</th>
-                            <th data-sort="price">Price (USD)</th>
-                            <th data-sort="price_change_24h">24h %</th>
-                            <th data-sort="market_cap">Market Cap</th>
-                            <th data-sort="total_volume">Volume (24h)</th>
+                            <th>#</th>
+                            <th>Token</th>
+                            <th data-sort="current_price" class="sortable">Price (USD)</th>
+                            <th data-sort="price_change_percentage_24h" class="sortable">24h %</th>
+                            <th data-sort="market_cap" class="sortable sorted-desc">Market Cap</th>
+                            <th data-sort="total_volume" class="sortable">Volume (24h)</th>
                             <th>Chart</th>
                         </tr>
                     </thead>
@@ -797,6 +818,11 @@
         let currentPage = 1;
         let currentSort = { field: 'market_cap', order: 'desc' };
         let isLoading = false;
+
+        // Add click event listener to table headers
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelector('.token-table thead').addEventListener('click', handleHeaderClick);
+        });
 
         // DOM Elements
         const searchInput = document.getElementById('searchInput');
@@ -987,44 +1013,41 @@
         }
 
         function sortTokens() {
-            const sortValue = sortSelect.value;
-            const [field, order] = sortValue.split('_').reduce((acc, part, i, arr) => {
-                if (i === arr.length - 1) {
-                    acc[1] = part;
-                } else {
-                    acc[0] = acc[0] ? acc[0] + '_' + part : part;
-                }
-                return acc;
-            }, ['', '']);
-
             filteredTokens.sort((a, b) => {
-                let aVal, bVal;
-
-                switch (field) {
-                    case 'market_cap':
-                        aVal = a.market_cap || 0;
-                        bVal = b.market_cap || 0;
-                        break;
-                    case 'volume':
-                        aVal = a.total_volume || 0;
-                        bVal = b.total_volume || 0;
-                        break;
-                    case 'price_change':
-                        aVal = a.price_change_percentage_24h || 0;
-                        bVal = b.price_change_percentage_24h || 0;
-                        break;
-                    default:
-                        aVal = a.market_cap || 0;
-                        bVal = b.market_cap || 0;
-                }
-
-                return order === 'desc' ? bVal - aVal : aVal - bVal;
+                const aVal = a[currentSort.field] || 0;
+                const bVal = b[currentSort.field] || 0;
+                return currentSort.order === 'desc' ? bVal - aVal : aVal - bVal;
             });
 
             currentPage = 1;
             renderTokenTable();
             renderPagination();
             updateResultCount();
+            updateSortHeaders();
+        }
+
+        function updateSortHeaders() {
+            document.querySelectorAll('.token-table th.sortable').forEach(th => {
+                th.classList.remove('sorted-asc', 'sorted-desc');
+                if (th.dataset.sort === currentSort.field) {
+                    th.classList.add(currentSort.order === 'asc' ? 'sorted-asc' : 'sorted-desc');
+                }
+            });
+        }
+
+        function handleHeaderClick(e) {
+            const th = e.target.closest('th.sortable');
+            if (!th) return;
+
+            const field = th.dataset.sort;
+            if (currentSort.field === field) {
+                currentSort.order = currentSort.order === 'desc' ? 'asc' : 'desc';
+            } else {
+                currentSort.field = field;
+                currentSort.order = 'desc';
+            }
+
+            sortTokens();
         }
 
         // Navigation
