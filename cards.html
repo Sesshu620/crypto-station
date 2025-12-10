@@ -250,6 +250,11 @@
             color: #0033ad;
         }
 
+        .network-visa {
+            background: #1a1f7120;
+            color: #1a1f71;
+        }
+
         .rewards {
             color: #28a745;
             font-weight: 600;
@@ -582,6 +587,21 @@
                 staking: false,
                 regions: ["US", "EU"],
                 score: 45
+            },
+            {
+                id: 11,
+                name: "Trade Republic Card",
+                issuer: "Trade Republic",
+                network: "visa",
+                rewards: 1.0,
+                fxFee: 0.0,
+                atmFee: 1.00,
+                monthlyFee: 0,
+                staking: false,
+                regions: ["EU", "DE"],
+                score: 78,
+                docsUrl: "https://traderepublic.com/",
+                featured: false
             }
         ];
 
@@ -590,7 +610,8 @@
             polygon: 'network-polygon',
             binance: 'network-binance',
             solana: 'network-solana',
-            cardano: 'network-cardano'
+            cardano: 'network-cardano',
+            visa: 'network-visa'
         };
 
         let filteredCards = [...CARDS];
