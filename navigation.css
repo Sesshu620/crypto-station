@@ -32,13 +32,6 @@
     transition: opacity 0.3s;
 }
 
-.light-logo {
-    display: block;
-}
-
-.dark-logo {
-    display: none;
-}
 
 /* Navigation Links */
 .nav-links {
@@ -122,14 +115,6 @@
 }
 
 /* Dark Mode Support */
-[data-theme="dark"] .light-logo {
-    display: none;
-}
-
-[data-theme="dark"] .dark-logo {
-    display: block;
-}
-
 [data-theme="dark"] .nav-menu {
     background-color: #1a1a2e;
     border-bottom-color: #2a2a3e;
