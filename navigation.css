@@ -2,7 +2,7 @@
 
 /* Body padding for fixed nav */
 body {
-    padding-top: 80px;
+    padding-top: 100px !important;
 }
 
 /* Navigation Menu */
