@@ -1,24 +1,5 @@
 /* Common Navigation Styles for Crypto Station */
 
-/* Watermark Logo */
-.watermark-logo {
-    position: fixed;
-    left: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 150px;
-    height: auto;
-    opacity: 0.08;
-    pointer-events: none;
-    z-index: 0;
-}
-
-@media (max-width: 1200px) {
-    .watermark-logo {
-        display: none;
-    }
-}
-
 /* Navigation Menu */
 .nav-menu {
     background-color: #f8f9fa;
