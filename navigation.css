@@ -36,11 +36,11 @@
 /* Navigation Links */
 .nav-links {
     display: flex;
-    gap: 1.5rem;
+    gap: 1rem;
     list-style: none;
     margin: 0;
     padding: 0;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     align-items: center;
 }
 
@@ -52,8 +52,8 @@
     text-decoration: none;
     color: #6f42c1;
     font-weight: 600;
-    font-size: 0.95rem;
-    padding: 0.5rem 0.8rem;
+    font-size: 0.9rem;
+    padding: 0.4rem 0.6rem;
     border-radius: 6px;
     transition: all 0.2s ease;
     white-space: nowrap;
