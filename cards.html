@@ -445,7 +445,6 @@
                 monthlyFee: 0,
                 staking: true,
                 regions: ["US", "EU", "UK", "AU", "CA"],
-                score: 95,
                 docsUrl: "https://crypto.com/cards"
             },
             {
@@ -459,7 +458,6 @@
                 monthlyFee: 0,
                 staking: false,
                 regions: ["US", "EU", "UK"],
-                score: 78,
                 docsUrl: "https://www.coinbase.com/card"
             },
             {
@@ -473,7 +471,6 @@
                 monthlyFee: 0,
                 staking: true,
                 regions: ["EU", "UK", "AS"],
-                score: 85,
                 docsUrl: "https://www.binance.com/en/cards"
             },
             {
@@ -487,7 +484,6 @@
                 monthlyFee: 0,
                 staking: false,
                 regions: ["EU", "UK"],
-                score: 82,
                 docsUrl: "https://nexo.com/nexo-card"
             },
             {
@@ -501,7 +497,6 @@
                 monthlyFee: 0,
                 staking: false,
                 regions: ["US"],
-                score: 65,
                 docsUrl: "https://blockfi.com/"
             },
             {
@@ -515,7 +510,6 @@
                 monthlyFee: 4.99,
                 staking: true,
                 regions: ["EU", "UK"],
-                score: 73,
                 docsUrl: "https://plutus.it/"
             },
             {
@@ -529,7 +523,6 @@
                 monthlyFee: 1.00,
                 staking: false,
                 regions: ["EU", "UK", "US", "AS"],
-                score: 70,
                 docsUrl: "https://wirexapp.com",
                 featured: true
             },
@@ -544,7 +537,6 @@
                 monthlyFee: 0,
                 staking: true,
                 regions: ["US", "EU", "AS"],
-                score: 88,
                 docsUrl: "https://swipe.io/"
             },
             {
@@ -558,7 +550,6 @@
                 monthlyFee: 2.00,
                 staking: false,
                 regions: ["EU"],
-                score: 58,
                 docsUrl: "https://eidoo.io/"
             },
             {
@@ -572,7 +563,6 @@
                 monthlyFee: 5.00,
                 staking: false,
                 regions: ["US", "EU"],
-                score: 45,
                 docsUrl: "https://bitpay.com/card/"
             },
             {
@@ -586,9 +576,7 @@
                 monthlyFee: 0,
                 staking: false,
                 regions: ["EU", "DE"],
-                score: 78,
-                docsUrl: "https://traderepublic.com/",
-                featured: false
+                docsUrl: "https://traderepublic.com/"
             }
         ];
 
@@ -623,7 +611,6 @@
         function renderStats() {
             const statsContainer = document.getElementById('stats');
             const totalCards = CARDS.length;
-            const avgScore = Math.round(CARDS.reduce((sum, card) => sum + card.score, 0) / totalCards);
             const maxRewards = Math.max(...CARDS.map(card => card.rewards));
             const stakingCards = CARDS.filter(card => card.staking).length;
 
@@ -631,10 +618,6 @@
                 <div class="stat-card">
                     <span class="stat-number">${totalCards}</span>
                     <div class="stat-label">Total Cards</div>
-                </div>
-                <div class="stat-card">
-                    <span class="stat-number">${avgScore}</span>
-                    <div class="stat-label">Average Score</div>
                 </div>
                 <div class="stat-card">
                     <span class="stat-number">${maxRewards}%</span>
@@ -693,13 +676,6 @@
             `).join('');
         }
 
-        function getScoreClass(score) {
-            if (score >= 90) return 'excellent';
-            if (score >= 75) return 'good';
-            if (score >= 60) return 'average';
-            return 'poor';
-        }
-
         function sortCards(cards) {
             return [...cards].sort((a, b) => {
                 // Featured cards always come first
@@ -737,10 +713,9 @@
                         aValue = a.staking ? 1 : 0;
                         bValue = b.staking ? 1 : 0;
                         break;
-                    case 'score':
                     default:
-                        aValue = a.score;
-                        bValue = b.score;
+                        aValue = a.name.toLowerCase();
+                        bValue = b.name.toLowerCase();
                         break;
                 }
 
