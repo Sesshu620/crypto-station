@@ -255,21 +255,6 @@
             color: var(--text-secondary);
         }
 
-        .staking-indicator {
-            display: inline-block;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-        }
-
-        .staking-yes {
-            background: #28a745;
-        }
-
-        .staking-no {
-            background: #dc3545;
-        }
-
         .links {
             display: flex;
             gap: 0.5rem;
@@ -626,10 +611,7 @@
                     </td>
                     <td class="rewards">${card.rewards}%</td>
                     <td>$${card.monthlyFee}</td>
-                    <td>
-                        <span class="staking-indicator ${card.staking ? 'staking-yes' : 'staking-no'}"
-                              title="${card.staking ? 'Staking available' : 'No staking'}"></span>
-                    </td>
+                    <td>${card.staking ? 'Yes' : 'N/A'}</td>
                     <td>
                         <div class="region-badges">
                             ${card.regions.map(region =>
