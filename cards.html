@@ -240,9 +240,6 @@
             font-weight: 600;
         }
 
-        .fee {
-            color: #dc3545;
-        }
 
         .region-badges {
             display: flex;
@@ -397,7 +394,6 @@
                     <option value="name-asc">Sort: Name (A→Z)</option>
                     <option value="name-desc">Sort: Name (Z→A)</option>
                     <option value="rewards-desc">Sort: Rewards (high→low)</option>
-                    <option value="fees-asc">Sort: FX fees (low→high)</option>
                 </select>
             </div>
         </div>
@@ -413,7 +409,6 @@
                         <th class="sortable" data-sort="name">Card</th>
                         <th class="sortable" data-sort="network">Brand</th>
                         <th class="sortable" data-sort="rewards">Rewards %</th>
-                        <th class="sortable" data-sort="fees">FX fee %</th>
                         <th class="sortable" data-sort="atm">ATM $</th>
                         <th class="sortable" data-sort="monthly">Monthly $</th>
                         <th class="sortable" data-sort="staking">Staking</th>
@@ -440,7 +435,6 @@
                 issuer: "Crypto.com",
                 network: "visa",
                 rewards: 8.0,
-                fxFee: 0.0,
                 atmFee: 0,
                 monthlyFee: 0,
                 staking: true,
@@ -453,7 +447,6 @@
                 issuer: "Coinbase",
                 network: "visa",
                 rewards: 4.0,
-                fxFee: 2.49,
                 atmFee: 2.50,
                 monthlyFee: 0,
                 staking: false,
@@ -466,7 +459,6 @@
                 issuer: "Binance",
                 network: "visa",
                 rewards: 2.0,
-                fxFee: 0.9,
                 atmFee: 2.00,
                 monthlyFee: 0,
                 staking: true,
@@ -479,7 +471,6 @@
                 issuer: "Nexo",
                 network: "mastercard",
                 rewards: 2.0,
-                fxFee: 0.0,
                 atmFee: 0,
                 monthlyFee: 0,
                 staking: false,
@@ -492,7 +483,6 @@
                 issuer: "BlockFi",
                 network: "visa",
                 rewards: 1.5,
-                fxFee: 3.0,
                 atmFee: 3.50,
                 monthlyFee: 0,
                 staking: false,
@@ -505,7 +495,6 @@
                 issuer: "Plutus",
                 network: "visa",
                 rewards: 3.0,
-                fxFee: 0.0,
                 atmFee: 2.00,
                 monthlyFee: 4.99,
                 staking: true,
@@ -518,7 +507,6 @@
                 issuer: "Wirex",
                 network: "visa",
                 rewards: 1.5,
-                fxFee: 1.0,
                 atmFee: 2.50,
                 monthlyFee: 1.00,
                 staking: false,
@@ -532,7 +520,6 @@
                 issuer: "Swipe",
                 network: "visa",
                 rewards: 6.0,
-                fxFee: 0.0,
                 atmFee: 0,
                 monthlyFee: 0,
                 staking: true,
@@ -545,7 +532,6 @@
                 issuer: "Eidoo",
                 network: "visa",
                 rewards: 1.0,
-                fxFee: 1.5,
                 atmFee: 2.50,
                 monthlyFee: 2.00,
                 staking: false,
@@ -558,7 +544,6 @@
                 issuer: "Bitpay",
                 network: "mastercard",
                 rewards: 0.0,
-                fxFee: 3.0,
                 atmFee: 2.00,
                 monthlyFee: 5.00,
                 staking: false,
@@ -571,7 +556,6 @@
                 issuer: "Trade Republic",
                 network: "visa",
                 rewards: 1.0,
-                fxFee: 0.0,
                 atmFee: 1.00,
                 monthlyFee: 0,
                 staking: false,
@@ -653,7 +637,6 @@
                         </span>
                     </td>
                     <td class="rewards">${card.rewards}%</td>
-                    <td class="fee">${card.fxFee}%</td>
                     <td>$${card.atmFee}</td>
                     <td>$${card.monthlyFee}</td>
                     <td>
@@ -696,10 +679,6 @@
                     case 'rewards':
                         aValue = a.rewards;
                         bValue = b.rewards;
-                        break;
-                    case 'fees':
-                        aValue = a.fxFee;
-                        bValue = b.fxFee;
                         break;
                     case 'atm':
                         aValue = a.atmFee;
