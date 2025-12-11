@@ -399,6 +399,7 @@
                         <th>Daily Limit</th>
                         <th>Monthly Limit</th>
                         <th>Regions</th>
+                        <th>Available</th>
                         <th>Limits</th>
                         <th>Links</th>
                     </tr>
@@ -465,17 +466,6 @@
             },
             {
                 id: 5,
-                name: "BlockFi Rewards Visa",
-                issuer: "BlockFi",
-                network: "visa",
-                rewards: 1.5,
-                monthlyFee: 0,
-                staking: false,
-                regions: ["US"],
-                docsUrl: "https://blockfi.com/"
-            },
-            {
-                id: 6,
                 name: "Plutus Card",
                 issuer: "Plutus",
                 network: "visa",
@@ -535,14 +525,27 @@
             },
             {
                 id: 11,
-                name: "Bitpay Card (Unavailable)",
+                name: "Bitpay Card",
                 issuer: "Bitpay",
                 network: "mastercard",
                 rewards: 0.0,
                 monthlyFee: 0,
                 staking: false,
                 regions: ["US"],
+                available: false,
                 docsUrl: "https://bitpay.com/card/"
+            },
+            {
+                id: 12,
+                name: "BlockFi Rewards Visa",
+                issuer: "BlockFi",
+                network: "visa",
+                rewards: 1.5,
+                monthlyFee: 0,
+                staking: false,
+                regions: ["US"],
+                available: false,
+                docsUrl: "https://blockfi.com/"
             }
         ];
 
@@ -630,6 +633,7 @@
                             ).join('')}
                         </div>
                     </td>
+                    <td>${card.available === false ? 'No' : 'Yes'}</td>
                     <td>
                         <div class="links">
                             ${card.limitsUrl ? `<a href="${card.limitsUrl}" class="link-btn" target="_blank" rel="noopener">Limits</a>` : '-'}
