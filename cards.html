@@ -409,7 +409,6 @@
                         <th class="sortable" data-sort="name">Card</th>
                         <th class="sortable" data-sort="network">Brand</th>
                         <th class="sortable" data-sort="rewards">Rewards %</th>
-                        <th class="sortable" data-sort="atm">ATM $</th>
                         <th class="sortable" data-sort="monthly">Monthly $</th>
                         <th class="sortable" data-sort="staking">Staking</th>
                         <th>Regions</th>
@@ -435,7 +434,6 @@
                 issuer: "Crypto.com",
                 network: "visa",
                 rewards: 8.0,
-                atmFee: 0,
                 monthlyFee: 0,
                 staking: true,
                 regions: ["US", "EU", "UK", "AU", "CA"],
@@ -447,7 +445,6 @@
                 issuer: "Coinbase",
                 network: "visa",
                 rewards: 4.0,
-                atmFee: 2.50,
                 monthlyFee: 0,
                 staking: false,
                 regions: ["US", "EU", "UK"],
@@ -459,7 +456,6 @@
                 issuer: "Binance",
                 network: "visa",
                 rewards: 2.0,
-                atmFee: 2.00,
                 monthlyFee: 0,
                 staking: true,
                 regions: ["EU", "UK", "AS"],
@@ -471,7 +467,6 @@
                 issuer: "Nexo",
                 network: "mastercard",
                 rewards: 2.0,
-                atmFee: 0,
                 monthlyFee: 0,
                 staking: false,
                 regions: ["EU", "UK"],
@@ -483,7 +478,6 @@
                 issuer: "BlockFi",
                 network: "visa",
                 rewards: 1.5,
-                atmFee: 3.50,
                 monthlyFee: 0,
                 staking: false,
                 regions: ["US"],
@@ -495,7 +489,6 @@
                 issuer: "Plutus",
                 network: "visa",
                 rewards: 3.0,
-                atmFee: 2.00,
                 monthlyFee: 4.99,
                 staking: true,
                 regions: ["EU", "UK"],
@@ -507,7 +500,6 @@
                 issuer: "Wirex",
                 network: "visa",
                 rewards: 1.5,
-                atmFee: 2.50,
                 monthlyFee: 1.00,
                 staking: false,
                 regions: ["EU", "UK", "US", "AS"],
@@ -520,7 +512,6 @@
                 issuer: "Swipe",
                 network: "visa",
                 rewards: 6.0,
-                atmFee: 0,
                 monthlyFee: 0,
                 staking: true,
                 regions: ["US", "EU", "AS"],
@@ -532,7 +523,6 @@
                 issuer: "Eidoo",
                 network: "visa",
                 rewards: 1.0,
-                atmFee: 2.50,
                 monthlyFee: 2.00,
                 staking: false,
                 regions: ["EU"],
@@ -544,7 +534,6 @@
                 issuer: "Bitpay",
                 network: "mastercard",
                 rewards: 0.0,
-                atmFee: 2.00,
                 monthlyFee: 5.00,
                 staking: false,
                 regions: ["US", "EU"],
@@ -556,7 +545,6 @@
                 issuer: "Trade Republic",
                 network: "visa",
                 rewards: 1.0,
-                atmFee: 1.00,
                 monthlyFee: 0,
                 staking: false,
                 regions: ["EU", "DE"],
@@ -637,7 +625,6 @@
                         </span>
                     </td>
                     <td class="rewards">${card.rewards}%</td>
-                    <td>$${card.atmFee}</td>
                     <td>$${card.monthlyFee}</td>
                     <td>
                         <span class="staking-indicator ${card.staking ? 'staking-yes' : 'staking-no'}"
@@ -679,10 +666,6 @@
                     case 'rewards':
                         aValue = a.rewards;
                         bValue = b.rewards;
-                        break;
-                    case 'atm':
-                        aValue = a.atmFee;
-                        bValue = b.atmFee;
                         break;
                     case 'monthly':
                         aValue = a.monthlyFee;
