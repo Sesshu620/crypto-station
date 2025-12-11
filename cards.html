@@ -235,6 +235,11 @@
             color: #eb001b;
         }
 
+        .network-both {
+            background: #66339920;
+            color: #663399;
+        }
+
         .rewards {
             color: #28a745;
             font-weight: 600;
@@ -502,11 +507,14 @@
                 id: 8,
                 name: "Swipe Card",
                 issuer: "Swipe",
-                network: "visa",
+                network: "visa/mastercard",
                 rewards: 6.0,
                 monthlyFee: 0,
                 staking: true,
                 regions: ["US", "EU", "AS"],
+                dailyLimit: "₹10,000 - ₹1,00,000",
+                monthlyLimit: "-",
+                limitsUrl: "https://www.swipe-faq.com/swipe-cards/all-faq-for-cards",
                 docsUrl: "https://swipe.io/"
             },
             {
@@ -561,7 +569,8 @@
 
         const NETWORK_COLORS = {
             visa: 'network-visa',
-            mastercard: 'network-mastercard'
+            mastercard: 'network-mastercard',
+            'visa/mastercard': 'network-both'
         };
 
         let filteredCards = [...CARDS];
