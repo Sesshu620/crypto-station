@@ -396,7 +396,10 @@
                         <th class="sortable" data-sort="rewards">Rewards %</th>
                         <th class="sortable" data-sort="monthly">Monthly $</th>
                         <th class="sortable" data-sort="staking">Staking</th>
+                        <th>Daily Limit</th>
+                        <th>Monthly Limit</th>
                         <th>Regions</th>
+                        <th>Limits</th>
                         <th>Links</th>
                     </tr>
                 </thead>
@@ -488,6 +491,9 @@
                 monthlyFee: 1.00,
                 staking: false,
                 regions: ["EU", "UK", "US", "AS"],
+                dailyLimit: "€500 - £750",
+                monthlyLimit: "€5,000 - £5,000",
+                limitsUrl: "https://help.wirexapp.com/article/wirex-limits-1380",
                 docsUrl: "https://wirexapp.com",
                 featured: true
             },
@@ -612,11 +618,18 @@
                     <td class="rewards">${card.rewards}%</td>
                     <td>$${card.monthlyFee}</td>
                     <td>${card.staking ? 'Yes' : 'N/A'}</td>
+                    <td>${card.dailyLimit || '-'}</td>
+                    <td>${card.monthlyLimit || '-'}</td>
                     <td>
                         <div class="region-badges">
                             ${card.regions.map(region =>
                                 `<span class="region-badge">${region}</span>`
                             ).join('')}
+                        </div>
+                    </td>
+                    <td>
+                        <div class="links">
+                            ${card.limitsUrl ? `<a href="${card.limitsUrl}" class="link-btn" target="_blank" rel="noopener">Limits</a>` : '-'}
                         </div>
                     </td>
                     <td>
